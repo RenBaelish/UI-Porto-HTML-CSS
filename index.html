@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raffi Bla Bla - Portfolio</title>
+    <!-- Devicon for skill logos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px; /* Offset for fixed header */
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333333; /* Text color dari Monochrome Minimalis */
+            background-color: #F7F7F7; /* Background color dari Monochrome Minimalis */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            position: relative;
+            color: #333333; /* Text color dari Monochrome Minimalis */
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #007BFF; /* Button/CTA color dari Monochrome Minimalis */
+        }
+
+        /* Navigation Styles - CSS Only */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent background */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333333;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #007BFF; /* Button/CTA color dari Monochrome Minimalis */
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: #333333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-link:hover {
+            color: #007BFF; /* Button/CTA color dari Monochrome Minimalis */
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #007BFF; /* Button/CTA color dari Monochrome Minimalis */
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* CSS-only mobile menu using checkbox hack */
+        .menu-toggle {
+            display: none;
+        }
+
+        .menu-btn {
+            display: none;
+            cursor: pointer;
+        }
+
+        .menu-icon {
+            display: block;
+            position: relative;
+            width: 25px;
+            height: 20px;
+        }
+
+        .menu-icon span,
+        .menu-icon::before,
+        .menu-icon::after {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: #333333;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon::before {
+            content: '';
+            top: 0;
+        }
+
+        .menu-icon span {
+            top: 8px;
+        }
+
+        .menu-icon::after {
+            content: '';
+            bottom: 0;
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(247, 247, 247, 0.9), rgba(247, 247, 247, 0.9)),
+                        url('https://source.unsplash.com/random/1920x1080/?code') no-repeat center center/cover;
+            background-blend-mode: overlay;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+            color: #333333; /* Text color dari Monochrome Minimalis */
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #333333; /* Text color dari Monochrome Minimalis */
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #007BFF; /* Button/CTA color dari Monochrome Minimalis */
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background: #0056b3; /* Hover Effect color dari Monochrome Minimalis */
+        }
+
+        /* About Section */
+        .about {
+            background-color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+            animation: slideInRight 1s ease-in-out;
+        }
+
+        .about-image img {
+            width: 80%;
+            max-width: 300px;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+            animation: fadeIn 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #007BFF; /* Button/CTA color dari Monochrome Minimalis */
+        }
+
+        .skill-card i {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 10px;
+            color: #333333; /* Text color dari Monochrome Minimalis */
+        }
+
+        /* Projects Section - Simple Grid Layout */
+        .projects {
+            background-color: white;
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 10px;
+            color: #333333;
+            font-size: 1.3rem;
+        }
+
+        .project-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #0056b3;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-form {
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333333; /* Text color dari Monochrome Minimalis */
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            padding: 12px 30px;
+            background: #007BFF; /* Button/CTA color dari Monochrome Minimalis */
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background: #0056b3; /* Hover Effect color dari Monochrome Minimalis */
+        }
+
+        .contact-info {
+            animation: slideInRight 1s ease-in-out;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #333333; /* Text color dari Monochrome Minimalis */
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: #2C3E50; /* Footer color dari Monochrome Minimalis */
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #007BFF; /* Button/CTA color dari Monochrome Minimalis */
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .projects-container {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            /* Mobile Navigation */
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: auto;
+                background-color: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                text-align: center;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px 0;
+            }
+
+            .nav-item {
+                margin: 16px 0;
+            }
+
+            .menu-toggle:checked ~ .nav-menu {
+                left: 0;
+            }
+
+            .menu-toggle:checked ~ .menu-btn .menu-icon::before {
+                transform: rotate(45deg);
+                top: 8px;
+            }
+
+            .menu-toggle:checked ~ .menu-btn .menu-icon span {
+                opacity: 0;
+            }
+
+            .menu-toggle:checked ~ .menu-btn .menu-icon::after {
+                transform: rotate(-45deg);
+                bottom: 9px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="#home" class="logo">Raffi<span>Rw</span></a>
+
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-btn">
+                <span class="menu-icon"><span></span></span>
+            </label>
+
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Raffi Lorem Ipsum</h1>
+            <p>Gabut Developer | Lorem Ipsum</p>
+            <a href="#projects" class="cta-btn">Lihat Proyek Saya</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>Tentang Saya</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Halo! Saya Raffi, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi quam ex odit pariatur architecto et vel provident animi? Cupiditate rerum consequuntur molestias facere dolore porro debitis? Sint nam ipsum natus.</p>
+                </div>
+                <div class="about-image">
+                    <img src="404.jpg" alt="Raffi Bla Bla">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <i class="devicon-react-original colored"></i>
+                    <h3>React</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="devicon-nextjs-original colored"></i>
+                    <h3>Next.js</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="devicon-laravel-plain colored"></i>
+                    <h3>Laravel</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="devicon-mysql-plain colored"></i>
+                    <h3>MySQL</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="devicon-mongodb-plain colored"></i>
+                    <h3>MongoDB</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="devicon-flutter-plain colored"></i>
+                    <h3>Flutter</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="devicon-dart-plain colored"></i>
+                    <h3>Dart</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="devicon-javascript-plain colored"></i>
+                    <h3>JavaScript</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="devicon-php-plain colored"></i>
+                    <h3>PHP</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section - Simple Grid Layout -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <img src="404.jpg" class="project-img">
+                    <div class="project-content">
+                        <h3>E-Commerce Website</h3>
+                        <p>A fully responsive e-commerce platform built with React and Laravel.</p>
+                        <a href="#" class="project-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="404.jpg" alt="Mobile App" class="project-img">
+                    <div class="project-content">
+                        <h3>Mobile App</h3>
+                        <p>A Flutter-based mobile application for task management.</p>
+                        <a href="#" class="project-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="404.jpg" class="project-img">
+                    <div class="project-content">
+                        <h3>Admin Dashboard</h3>
+                        <p>A comprehensive admin panel built with Next.js and MongoDB.</p>
+                        <a href="#" class="project-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="404.jpg" class="project-img">
+                    <div class="project-content">
+                        <h3>Web Game</h3>
+                        <p>An interactive browser game developed with JavaScript.</p>
+                        <a href="#" class="project-link">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Kontak</h2>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Kirim Pesan</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <p>📧 Email: raffiloremipsum@example.com</p>
+                    <p>💼 LinkedIn: linkedin.com/in/raffiloremipsum</p>
+                    <p>🐱 GitHub: github.com/loremipsum</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 RaffiRw. Dibuat dengan 💻 dan ☕</p>
+            <div class="social-icons">
+                <a href="#">📧</a>
+                <a href="#">💼</a>
+                <a href="#">🐱</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
